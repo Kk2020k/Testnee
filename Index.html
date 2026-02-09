@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <title>
+      Spotify Playlist Downloader – SpotiDost: Download Playlist Tracks in a Seconds!
+    </title>
+    <meta name="description" content="SpotiDost is a fast and simple Spotify playlist to MP3 downloader for tracks, albums. Paste a Spotify link, click Download, and grab the playlist songs you love." />
+    <!-- Primary Meta Tags -->
+    <meta name="keywords" content="Spotify Playlist downloader, download Spotify playlist to MP3, Spotify playlist track download, playlist downloader, album downloader, SpotiDost" />
+    <meta name="author" content="SpotiDost Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://spotidost.com/" />
+    <meta property="og:title" content="Spotify Playlist Downloader – SpotiDost: Download Playlist Tracks in a Seconds!" />
+    <meta property="og:description" content="SpotiDost is a fast and simple Spotify playlist to MP3 downloader for tracks, albums. Paste a Spotify link, click Download, and grab the playlist songs you love." />
+    <meta property="og:image" content="https://spotidost.com/images/meta/spotify-playlist-downloader.webp" />
+    <meta property="og:site_name" content="SpotiDost" />
+    <meta property="og:locale" content="en_US" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://spotidost.com/" />
+    <meta name="twitter:title" content="Spotify Playlist Downloader – SpotiDost: Download Playlist Tracks in a Seconds!" />
+    <meta name="twitter:description" content="SpotiDost is a fast and simple Spotify playlist to MP3 downloader for tracks, albums. Paste a Spotify link, click Download, and grab the playlist songs you love." />
+    <meta name="twitter:image" content="https://spotidost.com/images/meta/spotify-playlist-downloader.webp" />
+    <meta name="twitter:site" content="@SpotiDost" />
+    <style>
+      @keyframes shadowPulse{0%,to{box-shadow:0 8px 20px rgba(186,104,200,.35)}25%{box-shadow:0 8px 20px rgba(121,134,203,.35)}50%{box-shadow:0 8px 20px rgba(129,212,250,.35)}75%{box-shadow:0 8px 20px rgba(179,136,255,.35)}}@keyframes skel-shimmer{0%{background-position:100%0}to{background-position:0 0}}:root{--btn-a:#3f51b5;--btn-b:#673ab7;--card-shadow:0 6px 20px rgba(0,0,0,.06)}*{font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}.navbar-brand,h1,h2,h3{font-weight:700}h2{font-size:clamp(1.6rem,3vw,2.2rem)}.lead-sm{font-size:clamp(.98rem,1.6vw,1.06rem)}.section{margin-bottom:2rem}.card-clean{border:var(--card-border,1px solid #f2f1f1) !important;box-shadow:var(--card-shadow);border-radius:14px}.small-muted{font-size:.95rem;color:var(--bs-secondary-color)}#statusStrip{display:none}.status-wrap{background:var(--bs-secondary-bg);border-radius:.9rem;padding:.9rem 1rem;display:flex;align-items:center;justify-content:space-between}.status-pill,.status-title,.table thead th{font-weight:600}.status-pill{background:var(--bs-tertiary-bg)}#inpUrl{height:56px}.btn-download{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.54rem 1rem;border-radius:10px;font-weight:600;background:linear-gradient(90deg,var(--btn-a),var(--btn-b));color:#fff;box-shadow:0 8px 18px rgba(0,114,255,.18);white-space:nowrap;line-height:1;text-decoration:none;border:0}.btn-download:focus,.btn-download:hover{color:#fff;filter:brightness(.98)}.table td .btn-download{padding:.5rem .9rem;border-radius:8px}.result-card .card-body{display:flex;align-items:center;gap:16px}.result-card .thumb{width:84px;height:84px;object-fit:cover;border-radius:12px;flex:0 0 84px}.result-title{font-weight:600;margin:0 0 .15rem}.result-artist{margin:0;color:var(--bs-secondary-color)}.center-footer{display:flex;justify-content:center;padding:1rem}#resultsSection .table td,#resultsSection .table th,.table td,.table th{vertical-align:middle}@media (max-width:576px){.result-card .thumb{width:72px;height:72px}.btn-download{padding:.56rem 1rem;font-size:.98rem}}#howto&gt;div&gt;div&gt;div&gt;div&gt;ol{line-height:2!important}.thumb-hover{filter:grayscale(60%);transition:filter .4s ease,transform .3s ease}.thumb-hover:hover{filter:grayscale(0%)}.result-card{transition:transform .3s ease;animation:shadowPulse 20s linear infinite}.status-pill{--pct:0;--h:0;--fill:hsl(var(--h) 80% 50% / .55);--border:hsl(var(--h) 70% 45% / .8);display:inline-flex;align-items:center;min-height:38px;padding:.5rem .875rem;border:1px solid var(--border);border-radius:999px;color:#2c3e50;background:linear-gradient(90deg,var(--fill)0,var(--fill) calc(var(--pct)*1%),transparent calc(var(--pct)*1%),transparent 100%),#f8f9fa;transition:background-color .25s ease,border-color .25s ease,color .25s ease}.status-pill .status-label,.status-pill&gt;span{font-weight:600;letter-spacing:.2px}.status-pill.is-done{--pct:100;background:#e8f6ed;border-color:#b9e6c7;color:#146c43}@media (prefers-reduced-motion:reduce){.status-pill{transition:none}}.status-pill.is-success{--h:120;border-color:#b9e6c7;color:#146c43;background:linear-gradient(90deg,var(--fill)0,var(--fill) calc(var(--pct)*1%),transparent calc(var(--pct)*1%),transparent 100%),#e8f6ed}.status-pill.is-danger{--h:0;border-color:#f5c2c7;color:#842029;background:linear-gradient(90deg,var(--fill)0,var(--fill) calc(var(--pct)*1%),transparent calc(var(--pct)*1%),transparent 100%),#fdecec}:root{--skel-base:#e9ecef;--skel-hi:#f8f9fa}[data-bs-theme=dark]{--skel-base:#2b3035;--skel-hi:#3b4147}.skel,.skel-img{border-radius:.5rem}.skel{display:block;background:linear-gradient(90deg,var(--skel-base) 25%,var(--skel-hi) 37%,var(--skel-base) 63%);background-size:400% 100%;animation:skel-shimmer 1.2s ease-in-out infinite}.skel-img{width:80px;height:80px}.skel-line{height:14px}.skel-btn{height:38px;border-radius:.5rem}:root{--tbl-border:rgba(0,0,0,.08);--tbl-row-alt:rgba(0,0,0,.03);--tbl-row-hover:rgba(0,0,0,.06)}[data-bs-theme=dark]{--tbl-border:rgba(255,255,255,.10);--tbl-row-alt:rgba(255,255,255,.05);--tbl-row-hover:rgba(255,255,255,.09)}#resultsSection .table-responsive{border:1px solid var(--tbl-border)!important;border-radius:.75rem!important;overflow:hidden}#resultsSection .table{border-collapse:separate!important;border-spacing:0!important}#resultsSection .table&gt;:not(caption)&gt;*&gt;*{border-color:var(--tbl-border)!important}#resultsSection .table thead th{border-bottom-color:var(--tbl-border)!important}#resultsSection .table tbody&gt;tr:nth-child(odd)&gt;*{background-color:var(--tbl-row-alt)!important}#resultsSection .table-hover tbody&gt;tr:hover&gt;*{background-color:var(--tbl-row-hover)!important}#resultsSection .table td.text-end{white-space:nowrap}.result-card .btn-download+.btn-container{margin-left:.5rem}.result-card .btn-container{display:inline-block}.kofi-button{--ko-start:#ff7d78;--ko-end:#ff6863;--ko-shadow:rgba(255,104,99,.28);display:inline-flex;align-items:center;gap:.5rem;padding: .45rem .85rem;border-radius:.6rem;font-weight:700;font-size:.95rem;line-height:1;color:#fff!important;text-decoration:none;background:linear-gradient(180deg,var(--ko-start),var(--ko-end))!important;border:1px solid rgba(0,0,0,.08);box-shadow:0 10px 24px var(--ko-shadow),inset 0-2px 0 rgba(0,0,0,.12);transition:transform .12s ease,box-shadow .12s ease}.kofi-button:hover{transform:translateY(-1px);box-shadow:0 14px 28px var(--ko-shadow),inset 0-2px 0 rgba(0,0,0,.16)}.kofi-button:active{transform:translateY(0);box-shadow:0 8px 18px var(--ko-shadow),inset 0 2px 0 rgba(0,0,0,.18)}.kofi-button:focus{outline:0;box-shadow:0 0 0 .2rem rgba(255,104,99,.25),0 10px 24px var(--ko-shadow)}.kofi-button .kofiimg{width:18px;height:18px;display:block;object-fit:contain;filter:drop-shadow(0 1px 0 rgba(0,0,0,.12))}.kofi-button .kofitext{display:inline-flex;align-items:center;gap:.45rem;white-space:nowrap}[data-bs-theme=dark] .kofi-button{--ko-shadow:rgba(0,0,0,.35);border-color:rgba(255,255,255,.08)}@media (max-width:480px){.result-card .btn-download,.result-card .kofi-button{width:100%;justify-content:center}.result-card .btn-download+.btn-container{margin-left:0;margin-top:.5rem;display:block}}.img-thumbnail{padding:.35rem!important;border:1px solid #e1e1e1!important} [data-bs-theme=&#34;dark&#34;]{ --card-border:0; }.align-items-end{align-items:normal!important}#st-1{z-index:1!important}
+    </style>
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="SpotiDost" />
+    <link rel="manifest" href="/images/site.webmanifest" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      (function() {
+  const KEY = &#39;spoti_theme&#39;;
+  let theme = null;
+  try {
+    theme = localStorage.getItem(KEY);
+  } catch (e) {}
+  if (!theme) {
+    const m = document.cookie.match(/(?:^|;\s*)theme=(light|dark)/);
+    if (m) theme = m[1];
+  }
+  if (!theme) {
+    const prefersDark = window.matchMedia &amp;&amp; window.matchMedia(&#39;(prefers-color-scheme: dark)&#39;).matches;
+    theme = prefersDark ? &#39;dark&#39; : &#39;light&#39;;
+  }
+  document.documentElement.setAttribute(&#39;data-bs-theme&#39;, theme);
+  document.cookie = &#39;theme=&#39; + theme + &#39;; Max-Age=31536000; Path=/; SameSite=Lax; Secure; Domain=.spotidost.com&#39;;
+  window.__SPOTI_THEME__ = theme;
+})();
+    </script>
+    <link id="theme-light" rel="stylesheet" href="https://spotidost.com/assets/css/flatly.css" media="(prefers-color-scheme: light)" />
+    <link id="theme-dark" rel="stylesheet" href="https://spotidost.com/assets/css/darkly.css" media="(prefers-color-scheme: dark)" />
+    <script>
+      (function () {
+  var t = window.__SPOTI_THEME__;
+  if (!t) return;
+  var L = document.getElementById(&#39;theme-light&#39;);
+  var D = document.getElementById(&#39;theme-dark&#39;);
+  if (L &amp;&amp; D) {
+    L.media = (t === &#39;light&#39;) ? &#39;all&#39; : &#39;not all&#39;;
+    D.media = (t === &#39;dark&#39;)  ? &#39;all&#39; : &#39;not all&#39;;
+  }
+})();
+    </script>
+    <script>
+      window.setTheme=function(){};
+    </script>
+    <meta name="google-adsense-account" content="ca-pub-2309738042229483" />
+    <!-- Load AdSense ONCE per page (sample client id) -->
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2309738042229483" crossorigin="anonymous">
+    </script>
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8548817772195549" crossorigin="anonymous">
+    </script>
+    <link rel="preload" href="https://spotidost.com/assets/fonts/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin="" />
+    <link rel="preload" href="https://spotidost.com/assets/fonts/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin="" />
+    <link rel="preload" href="https://spotidost.com/assets/fonts/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2" as="font" type="font/woff2" crossorigin="" />
+    <link rel="preload" href="https://spotidost.com/assets/fonts/pxiEyp8kv8JHgFVrJJfecg.woff2" as="font" type="font/woff2" crossorigin="" />
+    <link rel="preload" href="/assets/js/bootstrap.bundle.min.js" as="script" />
+    <link rel="canonical" href="https://spotidost.com/playlist-downloader" />
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SYS005574L">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag(&#39;js&#39;, new Date());
+
+  gtag(&#39;config&#39;, &#39;G-SYS005574L&#39;);
+    </script>
+    <script>
+      window.dataLayer=window.dataLayer||[],window.dataLayer.push({&#34;gtm.start&#34;:Date.now(),event:&#34;gtm.js&#34;}),function(i){var e=!1;function t(){if(!e){e=!0;var t=document.createElement(&#34;script&#34;);t.async=!0,t.src=&#34;https://www.googletagmanager.com/gtm.js?id=&#34;+i,document.head.appendChild(t)}}var n=function(){t()};[&#34;pointerdown&#34;,&#34;click&#34;,&#34;scroll&#34;,&#34;mousemove&#34;,&#34;keydown&#34;,&#34;touchstart&#34;].forEach((function(i){window.addEventListener(i,n,{passive:!0,once:!0})})),&#34;requestIdleCallback&#34;in window?requestIdleCallback(t,{timeout:1500}):window.addEventListener(&#34;load&#34;,t,{once:!0})}(&#34;GTM-K7SZSQJ2&#34;);
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      &lt;iframe src=&#34;https://www.googletagmanager.com/ns.html?id=GTM-K7SZSQJ2&#34;
+height=&#34;0&#34; width=&#34;0&#34; style=&#34;display:none;visibility:hidden&#34;&gt;&lt;/iframe&gt;
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="https://spotidost.com/">        <span>        <img src="https://spotidost.com/images/favicon.svg" width="32" height="32" fetchpriority="high" loading="eager" />
+</span>
+        SpotiDost
+</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navMain" class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/spotify-to-mp3">              <img src="../images/svg/mp3.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Spotify to Mp3
+</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/album-downloader">              <img src="../images/svg/album.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Album Downloader
+</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/playlist-downloader">              <img src="../images/svg/playlist.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Playlist Downloader
+</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/terms">              <img src="../images/svg/terms.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Terms
+</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/privacy">              <img src="../images/svg/privacy.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Privacy
+</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/cookies">              <img src="../images/svg/cookies.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Cookies
+</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://spotidost.com/contact">              <img src="../images/svg/contact.svg" width="16" height="16" fetchpriority="low" loading="lazy" />
+              Contact
+</a>
+            </li>
+          </ul>
+          <button id="themeToggle" class="btn btn-outline-light btn-sm ms-lg-3">
+            🌙
+          </button>
+        </div>
+      </div>
+    </nav>
+    <main class="container my-4">
+      <header class="text-center section">
+        <h2 class="mb-2 h1" style="font-weight:700;">
+          Spotify Playlist Downloader – SpotiDost!
+        </h2>
+        <p class="text-muted lead-sm mb-0">
+          Simple &amp; Powerful Spotify Playlist Downloader tool.
+        </p>
+      </header>
+      <!-- Input -->
+      <section id="inputSection" class="card card-clean section">
+        <div class="card-body">
+          <form id="frm" class="row gy-3 align-items-end" novalidate="">
+            <div class="col-12 col-lg-9">
+              <input id="inpUrl" name="url" type="url" class="form-control form-control-lg" placeholder="Paste Spotify track, album or playlist link" autocomplete="off" required="" autofocus="" />
+            </div>
+            <div class="col-12 col-lg-3 d-grid d-lg-flex gap-2">
+              <button id="btnFetch" class="btn btn-primary btn-lg flex-grow-1" type="submit">
+                Download
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- Status (text only) -->
+      <section id="statusStrip" class="section">
+        <div class="status-wrap">
+          <div class="status-title">
+            Status
+          </div>
+          <div id="statusText" class="status-pill">
+            Starting…
+          </div>
+        </div>
+      </section>
+      <!-- Results -->
+      <section id="resultsSection" class="section d-none">
+        <!-- Skeleton while verifying/fetching -->
+        <div id="resultsSkeleton" class="row d-none" role="status" aria-live="polite" aria-busy="true">
+          <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <div class="card">
+              <div class="card-body d-flex gap-3 align-items-start">
+                <div class="skel skel-img">
+                </div>
+                <div class="flex-grow-1">
+                  <div class="skel skel-line w-75 mb-2">
+                  </div>
+                  <div class="skel skel-line w-50 mb-3">
+                  </div>
+                  <div class="skel skel-btn w-50">
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer center-footer">
+                <div class="skel skel-btn w-50 mx-auto">
+                </div>
+              </div>
+            </div>
+            <span class="visually-hidden">            Loading…
+</span>
+          </div>
+        </div>
+        <!-- Single track -->
+        <div id="trackCard" class="row d-none">
+          <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <div class="card card-clean result-card">
+              <div class="card-body">
+                <img id="trackImg" src="" alt="Artwork" class="thumb" fetchpriority="low" loading="lazy" />
+                <div class="flex-grow-1">
+                  <div id="trackTitle" class="result-title">
+                    Track Title
+                  </div>
+                  <p id="trackArtists" class="result-artist" style="display:none;margin-bottom: 5px;">
+                    Artist
+                  </p>
+                  <button id="trackDownloadBtn" type="button" class="btn-download">
+                    Download MP3
+                  </button>
+                  <div class="btn-container" style=" vertical-align: bottom; ">
+                    <a title="Support me on ko-fi.com" class="kofi-button" style="background-color:#ff6863;" rel="nofollow" href="https://ko-fi.com/spotidost" target="_blank">                    <span class="kofitext">                    <img src="https://spotidost.com/images/ko-fi/kofi.png" alt="Ko-fi donations" class="kofiimg" width="22" height="15" fetchpriority="low" loading="lazy" />
+                    Donate Us
+</span>
+</a>
+                  </div>
+                  <small id="trackSource" class="ms-2 text-muted" style="display:none"></small>
+                </div>
+              </div>
+              <div class="card-footer center-footer">
+                <button id="againBtnTrack" class="btn btn-primary">
+                  Download another
+                </button>
+              </div>
+              <div class="card-footer center-footer">
+                <!-- ShareThis BEGIN -->
+                <div class="sharethis-inline-share-b
