@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Playlist Downloader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+body{margin:0;background:#121212;color:#fff;font-family:'Varela Round'}
+.container{max-width:900px;margin:auto;padding:20px 20px 180px}
+.header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.header-title{font-size:2rem;color:#7C4DFF;font-weight:bold}
+.header-sub{font-size:.9rem;color:#aaa;margin-top:5px}
+
+.search{width:100%;padding:10px;margin:15px 0;border-radius:25px;
+border:1px solid #333;background:#1e1e1e;color:#fff;font-size:1rem}
+
+.card{display:flex;gap:12px;padding:12px;background:#242424;border-radius:14px;
+margin-bottom:12px;align-items:center;transition:.3s;cursor:pointer}
+.card:hover{background:#2b2b2b}
+.card.playing{outline:2px solid #7C4DFF}
+
+.card img{width:60px;height:60px;border-radius:12px;object-fit:cover}
+.card-info{flex:1;overflow:hidden}
+.title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:bold}
+.meta{font-size:.8rem;color:#aaa}
+.actions{display:flex;gap:10px}
+.actions span{cursor:pointer;color:#7C4DFF}
+
+.quality-btn{background:#222;border:1px solid #444;color:#bbb;
+padding:6px 14px;border-radius:20px;cursor:pointer}
+.quality-btn.active{border-color:#7C4DFF;color:#7C4DFF}
+
+.fab,.download-all{
+position:fixed;right:20px;width:56px;height:56px;border-radius:50%;
+background:linear-gradient(45deg,#7C4DFF,#9a6bff);
+border:none;color:#fff;font-size:28px;cursor:pointer
+}
+.fab{bottom:20px}
+.download-all{bottom:90px;display:none}
+
+.sheet{position:fixed;bottom:0;left:0;width:100%;background:#1e1e1e;
+padding:25px;transform:translateY(100%);transition:.3s;border-radius:20px 20px 0 0}
+.sheet.open{transform:translateY(0)}
+.sheet input,.sheet button{
+width:100%;padding:12px;border-radius:25px;border:none;margin-bottom:10px
+}
+
+.progress{position:fixed;inset:0;background:rgba(0,0,0,.7);
+display:none;align-items:center;justify-content:center}
+.progress.show{display:flex}
+.box{background:#222;padding:20px;border-radius:20px;width:300px;text-align:center}
+.bar{height:10px;background:#333;border-radius:6px;overflow:hidden}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,#7C4DFF,#9a6bff)}
+
+.load-msg{
+text-align:center;padding:20px;background:#1e1e1e;border-radius:14px;
+margin-bottom:15px;font-weight:bold;color:#7C4DFF;font-size:1rem
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header">
+    <div>
+      <div class="header-title">Playlist Downloader</div>
+      <div class="header-sub" id="trackCount">No playlist loaded</div>
+    </div>
+    <div>
+      <button class="quality-btn active" data-q="320kbps">320</button>
+      <button class="quality-btn" data-q="160kbps">160</button>
+      <button class="quality-btn" data-q="96kbps">96</button>
+    </div>
+  </div>
+
+  <input class="search" id="search" placeholder="Search by song title">
+  <div id="tracks"></div>
+</div>
+
+<button class="download-all" id="downloadAll">⬇</button>
+<button class="fab" id="fab">+</button>
+
+<div class="sheet" id="sheet">
+  <input id="playlistUrl" placeholder="Spotify playlist URL">
+  <button id="loadBtn">Load Playlist</button>
+</div>
+
+<div class="progress" id="progress">
+  <div class="box">
+    <b id="pText">0 / 0</b>
+    <div class="bar"><div id="pBar"></div></div>
+  </div>
+</div>
+
+<audio id="player"></audio>
+
+<script>
+const SPOTIFY_API="https://spotify-api-6yog.vercel.app/api/scrape";
+const SAAVN_API="https://jiosavan-api-with-playlist.vercel.app/api/search/songs";
+
+const tracksDiv=document.getElementById("tracks");
+const player=document.getElementById("player");
+const saavnCache={};
+
+let quality="320kbps";
+let currentKey=null;
+let currentBtn=null;
+let currentCard=null;
+
+document.querySelectorAll(".quality-btn").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".quality-btn").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    quality=b.dataset.q;
+  };
+});
+
+const fab=document.getElementById("fab");
+const sheet=document.getElementById("sheet");
+fab.onclick=()=>sheet.classList.add("open");
+
+function getBest(urls){
+  if(!urls) return null;
+  return urls.find(u=>u.quality===quality) || urls[0];
+}
+
+async function prefetch(key){
+  if(saavnCache[key]) return;
+  const r=await fetch(`${SAAVN_API}?query=${encodeURIComponent(key)}&limit=1`);
+  const j=await r.json();
+  saavnCache[key]=j?.data?.results?.[0]?.downloadUrl||[];
+}
+
+loadBtn.onclick=async()=>{
+  const url = playlistUrl.value.trim();
+  if(!url) return;
+  const id=new URL(url).pathname.split("/playlist/")[1];
+
+  sheet.classList.remove("open");
+  tracksDiv.innerHTML="<div class='load-msg'>Loading playlist...</div>";
+  document.getElementById("downloadAll").style.display="none";
+
+  const r=await fetch(`${SPOTIFY_API}?playlist=${id}`);
+  const j=await r.json();
+  tracksDiv.innerHTML="";
+  document.getElementById("trackCount").textContent=j.tracks.length+" tracks";
+
+  for(const t of j.tracks){
+    const key=`${t.title} ${t.artists}`;
+    await prefetch(key);
+
+    const c=document.createElement("div");
+    c.className="card";
+    c.dataset.search=t.title.toLowerCase(); // ONLY song title for search
+
+    c.innerHTML=`
+      <img src="${t.image}">
+      <div class="card-info">
+        <div class="title">${t.title}</div>
+        <div class="meta">${t.artists}</div>
+      </div>
+      <div class="actions">
+        <span class="material-icons play">play_arrow</span>
+        <span class="material-icons down">download</span>
+      </div>
+    `;
+    tracksDiv.appendChild(c);
+
+    const playBtn=c.querySelector(".play");
+    playBtn.onclick=()=>{
+      const best=getBest(saavnCache[key]);
+      if(!best) return;
+
+      if(currentKey===key){
+        if(player.paused){
+          player.play();
+          playBtn.textContent="pause";
+        }else{
+          player.pause();
+          playBtn.textContent="play_arrow";
+        }
+        return;
+      }
+
+      if(currentBtn) currentBtn.textContent="play_arrow";
+      if(currentCard) currentCard.classList.remove("playing");
+
+      player.src=best.url;
+      player.play();
+
+      playBtn.textContent="pause";
+      c.classList.add("playing");
+
+      currentKey=key;
+      currentBtn=playBtn;
+      currentCard=c;
+    };
+
+    c.querySelector(".down").onclick=async()=>{
+      const best=getBest(saavnCache[key]);
+      if(!best) return;
+      const b=await (await fetch(best.url)).blob();
+      const a=document.createElement("a");
+      a.href=URL.createObjectURL(b);
+      a.download=`${key.replace(/[<>:"/\\|?*]/g,"_")}.m4a`;
+      a.click();
+    };
+  }
+
+  document.getElementById("downloadAll").style.display="block";
+};
+
+player.onended=()=>{
+  if(currentBtn) currentBtn.textContent="play_arrow";
+  if(currentCard) currentCard.classList.remove("playing");
+  currentKey=null;
+  currentBtn=null;
+};
+
+document.getElementById("search").oninput=e=>{
+  const q=e.target.value.toLowerCase().trim();
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=c.dataset.search.includes(q)?"flex":"none";
+  });
+};
+
+const downloadAll=document.getElementById("downloadAll");
+const progress=document.getElementById("progress");
+const pBar=document.getElementById("pBar");
+const pText=document.getElementById("pText");
+
+downloadAll.onclick=async()=>{
+  const entries=Object.entries(saavnCache);
+  progress.classList.add("show");
+
+  for(let i=0;i<entries.length;i++){
+    const [k,u]=entries[i];
+    const best=getBest(u); if(!best) continue;
+
+    const b=await (await fetch(best.url)).blob();
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(b);
+    a.download=`${k.replace(/[<>:"/\\|?*]/g,"_")}.m4a`;
+    a.click();
+
+    pText.textContent=`${i+1} / ${entries.length}`;
+    pBar.style.width=((i+1)/entries.length*100)+"%";
+
+    await new Promise(r=>setTimeout(r,700));
+  }
+  progress.classList.remove("show");
+};
+</script>
+
+</body>
+</html>
+
